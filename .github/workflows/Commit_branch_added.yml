@@ -1,0 +1,16 @@
+name: "trriger workflow when push on any branch"
+
+on:
+    push:
+        branches:
+            "**"
+
+jobs:
+    push_on_another_branch:
+        runs-on: ubuntu-latest
+        steps:
+            - name: "Print commited"
+              run: echo "pushed on another branch"
+             
+            - name: "print date of commit"
+              run: date
