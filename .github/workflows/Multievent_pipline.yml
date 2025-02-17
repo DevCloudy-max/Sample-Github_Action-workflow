@@ -10,9 +10,13 @@ on:
     pull_request:
         branches:
             - master
+
+        types:
+            - closed
             
     workflow_dispatch: #manual trigger
-        
+
+
 
 
 jobs:
@@ -30,4 +34,16 @@ jobs:
             - name: "Runing On Master pull request"
               run: echo "This is a master pull request event"
 
-    
+    on-pull-request-closed: 
+        if: github.event_name == 'pull_request' && github.event.action == 'closed'
+        runs-on: ubuntu-latest
+        steps:
+            - name: "Runing On Master pull request closed"
+              run: echo "Runing on pull request closed event"
+
+    on-workflow-dispatch: #job 3
+        if: github.event_name == 'workflow_dispatch'
+        runs-on: ubuntu-latest
+        steps:
+            - name: "Runing On Manual trigger"
+              run: echo "Runing on workflow_dispatch event"
