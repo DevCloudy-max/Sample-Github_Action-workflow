@@ -5,10 +5,22 @@ on:
         branches:
             - master
             - test
-
+    
+    pull_request:
+        branches:
+            - master
+            
 jobs:
     on-push:
         runs-on: ubuntu-latest
         steps:
-            - name: "Runing On Master push"
+            - name: "Runing On Master/test push"
               run: echo "This is a master push event"
+
+    on-pull-request:
+        runs-on: ubuntu-latest
+        steps:
+            - name: "Runing On Master pull request"
+              run: echo "This is a master pull request event"
+
+    
