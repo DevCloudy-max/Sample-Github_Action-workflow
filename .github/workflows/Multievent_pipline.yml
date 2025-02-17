@@ -13,6 +13,8 @@ on:
         types:
             - closed
             - opened
+    schedule:
+        - cron: '0 10 * * 2,4' #every tuesday and thursday at 10:00 AM
                
         
     workflow_dispatch: #manual trigger
@@ -49,6 +51,13 @@ jobs:
         steps:
             - name: "Runing On Master pull request closed"
               run: echo "Runing on pull request closed event"
+
+    on-schedule: #job 4
+        if: github.event_name == 'schedule'
+        runs-on: ubuntu-latest
+        steps:
+            - name: "Runing On Schedule"
+              run: echo "Runing on schedule event"
 
     on-workflow-dispatch: #job 3
         if: github.event_name == 'workflow_dispatch'
