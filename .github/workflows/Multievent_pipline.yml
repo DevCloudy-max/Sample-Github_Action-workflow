@@ -1,0 +1,13 @@
+name:  "Muiltievent-pipline/Workflow"
+
+on:
+    push:
+        branches:
+            - master
+
+jobs:
+    on-push:
+        runs-on: ubuntu-latest
+        steps:
+            - name: "Runing On Master push"
+              run: echo "This is a master push event"
