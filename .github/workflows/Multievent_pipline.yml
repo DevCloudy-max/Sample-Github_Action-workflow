@@ -1,14 +1,38 @@
 name:  "Muiltievent-pipline/Workflow"
 
 on:
+    # Trigger the workflow on push or pull request,
     push:
         branches:
             - master
             - test
+    
+    pull_request:
+        branches:
+            - master
+            
+    workflow_dispatch: #manual trigger
+        
+
 
 jobs:
-    on-push:
+    on-push: #job 1
+        if: github.event_name == 'push'
         runs-on: ubuntu-latest
         steps:
-            - name: "Runing On Master push"
+            - name: "Runing On Master/test push"
               run: echo "This is a master push event"
+
+    on-pull-request: #job 2
+        if: github.event_name == 'pull_request'
+        runs-on: ubuntu-latest
+        steps:
+            - name: "Runing On Master pull request"
+              run: echo "This is a master pull request event"
+
+    on-workflow-dispatch: #job 3
+        if: github.event_name == 'workflow_dispatch'
+        runs-on: ubuntu-latest
+        steps:
+            - name: "Runing On Manual trigger"
+              run: echo "Runing on workflow_dispatch event"
