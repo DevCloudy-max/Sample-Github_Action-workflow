@@ -1,6 +1,7 @@
 name:  "Muiltievent-pipline/Workflow"
 
 on:
+    # Trigger the workflow on push or pull request,
     push:
         branches:
             - master
@@ -10,6 +11,10 @@ on:
         branches:
             - master
             
+    workflow_dispatch: #manual trigger
+        
+
+
 jobs:
     on-push: #job 1
         if: github.event_name == 'push'
